@@ -4,6 +4,23 @@
     <title>Result</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
     <style>
+        /* Custom style for the message */
+        .alert-custom {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+
+            text-align: center;
+            background-color: red;
+            color: white;
+        }
+
         body {
             background-image: url('static/images/background.jpeg');
             background-size: cover;
@@ -53,6 +70,14 @@
     </style>
 </head>
 <body>
+    <!-- Message Section -->
+    {% if message %}
+    <div class="alert alert-custom" role="alert">
+        {{ message }}
+        <a href="/" class="btn btn-primary mt-3">重新上傳</a>
+</div>
+{% endif %}
+
     <div class="container">
         <h1>Results</h1>
         <div class="image-row">

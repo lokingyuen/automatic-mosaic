@@ -22,7 +22,6 @@ def process():
 
     # 加载图像
     image = cv2.imread(file_path)
-
     # 将图像转换为灰度
     gray_image = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
 
@@ -44,7 +43,11 @@ def process():
     output_path = 'static/blurred_image.jpg'
     cv2.imwrite(output_path, image)
 
-    return render_template('result.html', input_image=file_path, output_image=output_path)
+    # 如果没有检测到人脸，返回提示信息
+    if len(faces) == 0:
+        return render_template('result.html', message='未检测到人脸，请上传包含人脸的照片。')
+    else:
+        return render_template('result.html', input_image=file_path, output_image=output_path)
 
 if __name__ == '__main__':
     app.run(debug=True)
