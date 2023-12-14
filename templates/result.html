@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Result</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <style>
+        body {
+            background-image: url('static/background.jpeg');
+            background-size: cover;
+            background-position: center;
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            color: #333;
+        }
+        .container {
+            max-width: 1000px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: rgba(255, 255, 255, 0.8);
+            border-radius: 4px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        .image-row {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 20px;
+        }
+        .image-container {
+            flex-basis: 50%;
+            text-align: center;
+        }
+        .image-container img {
+            max-width: 100%;
+            max-height: 400px; /* Set a maximum height */
+            height: auto; /* Keep the aspect ratio */
+            width: auto; /* Adjust width accordingly */
+            border-radius: 4px;
+        }
+        .buttons-container {
+            margin-top: 40px;
+            text-align: center;
+        }
+        @media (max-width: 768px) {
+            .image-row {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Results</h1>
+        <div class="image-row">
+            <div class="image-container">
+                <h2>Original Image:</h2>
+                <img id="inputImage" src="{{ input_image }}" alt="Input Image">
+            </div>
+            <div class="image-container">
+                <h2>Privacy Processed Image:</h2>
+                <img id="outputImage" src="{{ output_image }}" alt="Output Image">
+            </div>
+        </div>
+        <div class="buttons-container">
+            <a class="btn btn-primary" href="/">Process Another Photo</a>
+            <a class="btn btn-success" href="{{ output_image }}" download>Download Image</a>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>AI Photo</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <style>
+        body {
+            background-image: url('static/background.jpeg');
+            background-size: cover;
+            background-position: center;
+            font-family: 'Arial', sans-serif;
+        }
+        .container {
+            max-width: 500px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: rgba(255, 255, 255, 0.8);
+            border-radius: 4px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            text-align: center; /* 確保容器內的所有元素居中 */
+        }
+        h1, h4, .image-description {
+            color: #28a745;
+        }
+        .form-group, .button-container {
+            margin: 20px 0; /* 增加上下間距 */
+        }
+        .image-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+        }
+        .image-container img {
+            max-width: 100%;
+            max-height: 400px;
+            height: auto;
+            width: auto;
+            border-radius: 4px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            display: block;
+            margin: 0 auto; /* 圖片居中 */
+        }
+        @media (max-width: 600px) {
+            .container {
+                width: 100%;
+                padding: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1 class="mb-4">AI News Photo Privacy</h1>
+        <form action="/process" method="POST" enctype="multipart/form-data">
+            <div class="form-group">
+                <label for="photo">Select Image:</label>
+                <input type="file" id="photo" name="imageInput" accept="image/*" required onchange="previewImage()">
+            </div>
+            <div class="form-group button-container">
+                <button type="submit" class="btn btn-primary">Run</button>
+            </div>
+        </form>
+
+        <!-- Display Image and Description -->
+        <div class="image-container">
+            <h4 class="why-choose">Preview</h4>
+            <img id="imagePreview" src="#" alt="Your Image" style="display:none;"/>
+        </div>
+    </div>
+
+    <script>
+        function previewImage() {
+            var preview = document.getElementById('imagePreview');
+            var file    = document.getElementById('photo').files[0];
+            var reader  = new FileReader();
+
+            reader.onloadend = function () {
+                preview.src = reader.result;
+                preview.style.display = 'block';
+            }
+
+            if (file) {
+                reader.readAsDataURL(file);
+            } else {
+                preview.src = "";
+                preview.style.display = 'none';
+            }
+        }
+    </script>
+</body>
+</html>
